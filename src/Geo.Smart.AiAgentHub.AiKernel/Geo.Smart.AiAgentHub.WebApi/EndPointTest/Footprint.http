@@ -1,0 +1,19 @@
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 前端操作紀錄
+POST {{HostAddress}}/Footprint/Frontend
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "pageName": "測試",
+  "url": "/joe/test"
+}
+

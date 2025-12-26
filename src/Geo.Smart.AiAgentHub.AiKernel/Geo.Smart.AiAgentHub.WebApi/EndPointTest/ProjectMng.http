@@ -1,0 +1,57 @@
+###
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 取得 AI 專案設定的資料 - 提供專案 ID
+GET {{HostAddress}}/ProjectMng/ModelTools?projectId=C8233BFA-4B7F-4EC4-9B33-46690EE944B8
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 新增 MCP Server 設定資料
+POST {{HostAddress}}/ProjectMng/Create
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "name": "AI Project Test",
+  "description": "測試專案",
+  "systemPrompt": "你是一個專業的助理",
+  "llmIds": [],
+  "mcpServerId": []
+}
+
+### 取得 AI 專案資料列表
+GET {{HostAddress}}/ProjectMng/Query?CurrentPage=1&PageSize=10&Sorting=Name&SortingDesc=false
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 取得 AI 專案詳細資料
+GET {{HostAddress}}/ProjectMng/Detail/C8233BFA-4B7F-4EC4-9B33-46690EE944B8
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 下載專案設定檔
+GET {{HostAddress}}/ProjectMng/DownloadSetting/C8233BFA-4B7F-4EC4-9B33-46690EE944B8
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 取得可以選取的 LLM 清單
+GET {{HostAddress}}/ProjectMng/Llms
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 取得可以選取的 MCP Server 清單
+GET {{HostAddress}}/ProjectMng/McpServers
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 專案清單查詢 - updateDate 排序
+GET {{HostAddress}}/ProjectMng/Query?keyword=&currentPage=1&pageSize=10&sorting=name&sortingDesc=true
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}

@@ -1,0 +1,15 @@
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+###
+GET {{HostAddress}}/Common/Mappings
+
+###
+GET {{HostAddress}}/Common/Elmah?q=1

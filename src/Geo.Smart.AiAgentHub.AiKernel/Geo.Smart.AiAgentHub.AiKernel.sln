@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.AiKernel", "Geo.Smart.AiAgentHub.AiKernel\Geo.Smart.AiAgentHub.AiKernel.csproj", "{ECF57E09-1D70-4659-BE2E-8F50A2E1CC52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.AiKernelTests", "Geo.Smart.AiAgentHub.AiKernelTests\Geo.Smart.AiAgentHub.AiKernelTests.csproj", "{4433D0BC-F7EC-4E65-811F-DB6C30979086}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A79092F2-5C27-42FA-A1CF-3130F46811F1}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\doc\ollama.md = ..\..\doc\ollama.md
+		..\..\README.md = ..\..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.Infras", "Geo.Smart.AiAgentHub.Infras\Geo.Smart.AiAgentHub.Infras.csproj", "{72620922-350B-4B0C-86D3-8C20DF87B6F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.Entities", "Geo.Smart.AiAgentHub.Entities\Geo.Smart.AiAgentHub.Entities.csproj", "{897A6999-D63D-418F-B543-6F9AB3F64C08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.DataAccess", "Geo.Smart.AiAgentHub.DataAccess\Geo.Smart.AiAgentHub.DataAccess.csproj", "{E67CA2BB-4B0E-4EA6-A8D2-02E510D6707E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.Services", "Geo.Smart.AiAgentHub.Services\Geo.Smart.AiAgentHub.Services.csproj", "{4DD0A41C-F219-41D5-8F55-612744D4012C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.WebApi", "Geo.Smart.AiAgentHub.WebApi\Geo.Smart.AiAgentHub.WebApi.csproj", "{B3FD6C74-90E1-4AB7-8C1C-FC7D0420053F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.EfGenerator", "Geo.Smart.AiAgentHub.EfGenerator\Geo.Smart.AiAgentHub.EfGenerator.csproj", "{DFE2A8D3-DE2B-4A50-91CA-EE20AC6BB646}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{8AEA0FAC-6987-4686-8720-42C337C82FF6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Geo.Smart.AiAgentHub.DbModel", "Geo.Smart.AiAgentHub.DbModel\Geo.Smart.AiAgentHub.DbModel.sqlproj", "{F6484A55-E491-4514-902E-71055120280E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.ServicesTests", "Geo.Smart.AiAgentHub.ServicesTests\Geo.Smart.AiAgentHub.ServicesTests.csproj", "{6C633BC8-DF64-45D4-A18E-EAC0F8E312D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ai", "Ai", "{514CD725-B5BC-42C5-82BE-89F6D305E626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Smart.AiAgentHub.McpSseServer", "Geo.Smart.AiAgentHub.McpSseServer\Geo.Smart.AiAgentHub.McpSseServer.csproj", "{136BBE71-E791-441D-8696-06A7D2709D8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECF57E09-1D70-4659-BE2E-8F50A2E1CC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF57E09-1D70-4659-BE2E-8F50A2E1CC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF57E09-1D70-4659-BE2E-8F50A2E1CC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF57E09-1D70-4659-BE2E-8F50A2E1CC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4433D0BC-F7EC-4E65-811F-DB6C30979086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4433D0BC-F7EC-4E65-811F-DB6C30979086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4433D0BC-F7EC-4E65-811F-DB6C30979086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4433D0BC-F7EC-4E65-811F-DB6C30979086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72620922-350B-4B0C-86D3-8C20DF87B6F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72620922-350B-4B0C-86D3-8C20DF87B6F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72620922-350B-4B0C-86D3-8C20DF87B6F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72620922-350B-4B0C-86D3-8C20DF87B6F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897A6999-D63D-418F-B543-6F9AB3F64C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897A6999-D63D-418F-B543-6F9AB3F64C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897A6999-D63D-418F-B543-6F9AB3F64C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897A6999-D63D-418F-B543-6F9AB3F64C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E67CA2BB-4B0E-4EA6-A8D2-02E510D6707E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E67CA2BB-4B0E-4EA6-A8D2-02E510D6707E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E67CA2BB-4B0E-4EA6-A8D2-02E510D6707E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E67CA2BB-4B0E-4EA6-A8D2-02E510D6707E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD0A41C-F219-41D5-8F55-612744D4012C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD0A41C-F219-41D5-8F55-612744D4012C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD0A41C-F219-41D5-8F55-612744D4012C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD0A41C-F219-41D5-8F55-612744D4012C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3FD6C74-90E1-4AB7-8C1C-FC7D0420053F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3FD6C74-90E1-4AB7-8C1C-FC7D0420053F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3FD6C74-90E1-4AB7-8C1C-FC7D0420053F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3FD6C74-90E1-4AB7-8C1C-FC7D0420053F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE2A8D3-DE2B-4A50-91CA-EE20AC6BB646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE2A8D3-DE2B-4A50-91CA-EE20AC6BB646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE2A8D3-DE2B-4A50-91CA-EE20AC6BB646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6484A55-E491-4514-902E-71055120280E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6484A55-E491-4514-902E-71055120280E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6484A55-E491-4514-902E-71055120280E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C633BC8-DF64-45D4-A18E-EAC0F8E312D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C633BC8-DF64-45D4-A18E-EAC0F8E312D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C633BC8-DF64-45D4-A18E-EAC0F8E312D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C633BC8-DF64-45D4-A18E-EAC0F8E312D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136BBE71-E791-441D-8696-06A7D2709D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136BBE71-E791-441D-8696-06A7D2709D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136BBE71-E791-441D-8696-06A7D2709D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136BBE71-E791-441D-8696-06A7D2709D8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ECF57E09-1D70-4659-BE2E-8F50A2E1CC52} = {514CD725-B5BC-42C5-82BE-89F6D305E626}
+		{4433D0BC-F7EC-4E65-811F-DB6C30979086} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DFE2A8D3-DE2B-4A50-91CA-EE20AC6BB646} = {8AEA0FAC-6987-4686-8720-42C337C82FF6}
+		{F6484A55-E491-4514-902E-71055120280E} = {8AEA0FAC-6987-4686-8720-42C337C82FF6}
+		{6C633BC8-DF64-45D4-A18E-EAC0F8E312D1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{136BBE71-E791-441D-8696-06A7D2709D8D} = {514CD725-B5BC-42C5-82BE-89F6D305E626}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A5C2450-14C2-4A8B-8500-379D2A0D1C76}
+	EndGlobalSection
+EndGlobal

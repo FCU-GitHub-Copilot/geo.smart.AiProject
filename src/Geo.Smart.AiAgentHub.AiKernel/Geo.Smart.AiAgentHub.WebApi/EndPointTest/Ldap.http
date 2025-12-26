@@ -1,0 +1,10 @@
+###
+# @name ldap
+POST {{HostAddress}}/Token/Ldap
+Content-Type: application/json
+{
+  "userName": "{{LdapUserName}}",
+  "qoo": "{{LdapQoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}

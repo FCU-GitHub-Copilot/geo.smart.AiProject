@@ -1,0 +1,3 @@
+Microsoft.EntityFrameworkCore.ChangeTracking
+Microsoft.EntityFrameworkCore.Infrastructure
+System.Linq.Expressions

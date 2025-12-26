@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Geo.Smart.CommonCore" Version="1.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="8.0.22" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.AiKernel\Geo.Smart.AiAgentHub.AiKernel.csproj" />
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.DataAccess\Geo.Smart.AiAgentHub.DataAccess.csproj" />
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.Infras\Geo.Smart.AiAgentHub.Infras.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Using Include="Geo.Smart.AiAgentHub.Infras.Enums" />
+	<Using Include="Geo.Smart.AiAgentHub.DataAccess" />
+	<Using Include="Geo.Smart.AiAgentHub.DataAccess.Entities" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Vms\Chat\" />
+  </ItemGroup>
+
+</Project>

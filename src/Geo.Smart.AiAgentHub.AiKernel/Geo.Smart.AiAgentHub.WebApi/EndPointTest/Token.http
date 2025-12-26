@@ -1,0 +1,81 @@
+###
+GET {{HostAddress}}/Token/Captcha
+
+### 一般帳密登入
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### LDAP 登入
+# @name ldap
+POST {{HostAddress}}/Token/Ldap
+Content-Type: application/json
+{
+  "userName": "{{LdapUserName}}",
+  "qoo": "{{LdapQoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### LDAP 登入 - 使用一般帳密
+POST {{HostAddress}}/Token/Ldap
+Content-Type: application/json
+{
+  "userName": "geoadmin",
+  "qoo": "1qaz@WSX3edc",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 更新權杖
+POST {{HostAddress}}/Token/Refresh
+Content-Type: application/json
+{
+  "accessToken": "{{ldap.response.body.$.data.accessToken}}",
+  "refreshToken": "{{ldap.response.body.$.data.refreshToken}}",
+  "status": 0
+}
+
+### 測試登入失敗，密碼錯誤
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "Error_QOO",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 測試登入失敗，驗證碼錯誤
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "Error_QOO",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "123456"
+}
+
+### 刷新TOKEN
+POST {{HostAddress}}/Token/Refresh
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "AccessToken": "{{login.response.body.$.data.accessToken}}",
+  "RefreshToken": "{{login.response.body.$.data.refreshToken}}"
+}
+
+### 帳號登出(無效 token)
+GET {{HostAddress}}/Token/Logout
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIwMGU5ODQ3ZC1iZDIzLTRlOTgtOWExNy1mNWQxODI0NTQ5NGIiLCJ1bmlxdWVfbmFtZSI6Ikdlb0FkbWluIiwicm9sZSI6IjBiMWFhYzYyLTEwZWItNGMxNi05NTU4LWY4NmU5OTc5YzkwYiIsImdyb3Vwc2lkIjoiIiwianRpIjoiMzU1OTcwZWQtYjI3Yi00YzA3LTgxMjktMWRmNGFiNjJlMzYyIiwibmFtZSI6Iuezu-e1seeuoeeQhuWToSIsIm5iZiI6MTc1NDI3Mjc1NSwiZXhwIjoxNzU0MjczMDU1LCJpYXQiOjE3NTQyNzI3NTUsImlzcyI6Imh0dHBzOi8vd3d3Lmdlby5jb20udHcvb2F1dGgyL2RlZmF1bHQifQ.qUKNCNAspHU6XlZC3Dwe97RIazOC0az5Jkqr7qTl7lEV_Kzb2HlVP6v_0WcXgZQehaeNOHRXqizVON5Zu3qbvQ
+
+### 帳號登出(有效 token)
+GET {{HostAddress}}/Token/Logout
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+

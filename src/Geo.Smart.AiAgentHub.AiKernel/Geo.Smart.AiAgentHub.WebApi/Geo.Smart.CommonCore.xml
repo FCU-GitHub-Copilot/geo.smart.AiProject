@@ -1,0 +1,1883 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Geo.Smart.CommonCore</name>
+    </assembly>
+    <members>
+        <member name="T:Geo.Smart.CommonCore.Gis.Circle">
+            <summary>
+            圓形物件
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Gis.Circle.X">
+            <summary>
+            X座標
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Gis.Circle.Y">
+            <summary>
+            Y座標
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Gis.Circle.Radius">
+            <summary>
+            半徑
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Gis.Point">
+            <summary>
+            Geometry Point 空間點資料
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Gis.Point.#ctor">
+            <summary>
+            Initializes a new instance of the Point class
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Gis.Point.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the Point class
+            </summary>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Gis.Point.X">
+            <summary>
+            The X or horizontal, or longitudinal ordinate
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Gis.Point.Y">
+            <summary>
+            The Y or vertical, or latitudinal ordinate
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Gis.Tm97Crs">
+            <summary>
+            二度分帶 TWD97 對應之座標參考系統 CRS (Coordinate Reference System)
+            http://www.sunriver.com.tw/grid_tm2.htm
+            </summary>
+        </member>
+        <member name="F:Geo.Smart.CommonCore.Gis.Tm97Crs.Radius">
+            <summary>
+            地球長半徑
+            </summary>
+        </member>
+        <member name="F:Geo.Smart.CommonCore.Gis.Tm97Crs.Flat">
+            <summary>
+            地球扁率
+            </summary>
+        </member>
+        <member name="F:Geo.Smart.CommonCore.Gis.Tm97Crs.Original">
+            <summary>
+            起始中央經線
+            </summary>
+        </member>
+        <member name="F:Geo.Smart.CommonCore.Gis.Tm97Crs.Scale">
+            <summary>
+            中央經線尺度
+            </summary>
+        </member>
+        <member name="F:Geo.Smart.CommonCore.Gis.Tm97Crs.Shift">
+            <summary>
+            橫座標平移量
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Gis.Transformation">
+            <summary>
+            TWD97 與 WGS84 簡易座標轉換
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Gis.Transformation.ToWgs84(System.Double,System.Double)">
+            <summary>
+            TWD97 轉 WGS84
+            </summary>
+            <param name="x">Twd97 x座標</param>
+            <param name="y">Twd97 x座標</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Gis.Transformation.ToTwd97(System.Double,System.Double)">
+            <summary>
+            WGS84 轉 TWD97
+            </summary>
+            <param name="lon">WGS84 經度座標</param>
+            <param name="lat">WGS84 緯度座標</param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.CaptchaHelper">
+            <summary>
+            帳號登入時使用的 capcha 圖片產製
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Helpers.CaptchaHelper.Width">
+            <summary>
+            驗證碼圖片長度
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Helpers.CaptchaHelper.Height">
+            <summary>
+            驗證碼圖片高度
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.CaptchaHelper.GetCode(System.Int32,System.Boolean)">
+            <summary>
+            隨機產生驗證數字/文字
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.CaptchaHelper.GetByteArray(System.String)">
+            <summary>
+            取得 Captcha 的圖片，轉為 byte[] 回傳
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.CaptchaHelper.CreateBitmap(System.String)">
+            <summary>
+            建立 Captcha 的圖片
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.CaptchaHelper.GetNumber(System.Int32)">
+            <summary>
+            取得隨機數字
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.CaptchaHelper.GetText(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            取得隨機英文字母
+            </summary>
+            <param name="length"></param>
+            <param name="isUpper"></param>
+            <param name="isMix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.CaptchaHelper.GetMixCode(System.Int32)">
+            <summary>
+            取得混和的文字
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.DateHelper">
+            <summary>
+            提供民國年的轉換
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.DateHelper.ToFullTaiwanDate(System.DateTime)">
+            <summary>
+            西元年 轉 民國年
+            </summary>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.DateHelper.ToSimpleTaiwanDate(System.DateTime)">
+            <summary>
+            西元年 轉 民國年 (簡寫)
+            </summary>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.DateHelper.ToTaiwanDate(System.Nullable{System.DateTime})">
+            <summary>
+            西元年 轉 民國年
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.EncodingHelper">
+            <summary>
+            編碼小幫手
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.EncodingHelper.IsBig5Encoding(System.Byte[])">
+            <summary>
+            偵測byte[]是否為BIG5編碼
+            </summary>
+            <param name="bytes">字串 byte array</param>
+            <returns></returns>
+            <remarks>http://blog.darkthread.net/post-2012-04-11-detect-big5-encoding.aspx</remarks>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.EncodingHelper.ReadAllBytes(System.IO.Stream)">
+            <summary>
+            讀取二進制資料
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.EncodingHelper.ConvertBig5ToUtf8(System.String)">
+            <summary>
+            BIG5 轉換為 UTF8
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.EncodingHelper.ConvertBig5ToUtf8(System.Byte[])">
+            <summary>
+            BIG5 轉換為 UTF8
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.EncodingHelper.ConvertUnicodeToUtf8(System.String)">
+            <summary>
+            Unicode 轉換為 UTF8
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.EnumHelper">
+            <summary>
+            列舉小幫手
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.EnumHelper.GetEnumItem``1">
+            <summary>
+            將列舉轉陣列，可供下拉式選單使用
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.FileTypeHelper">
+            <summary>
+            檔案類型小幫手
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.FileTypeHelper.GetContentType(System.String)">
+            <summary>
+            取得檔案類型
+            </summary>
+            <param name="extension"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.HttpHelper">
+            <summary>
+            簡易的包裝 WebClient，可以透過 GET、POST 與參數取得網路文字資料
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.DownloadString(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            使用 GET 從指定的網址下載資料
+            </summary>
+            <param name="url">下載位置</param>
+            <param name="paras">key-value 查詢參數</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.DownloadStringAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            非同步的方式，複製一份程式碼，有必要嗎??
+            </summary>
+            <param name="url"></param>
+            <param name="paras"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.CreateUrlWithParam(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            將 Dictionary 轉換成 url 參數(組成 a=1(and)b=2...)
+            </summary>
+            <param name="url">網址</param>
+            <param name="paras">key-value 查詢參數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.DownloadString``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            從指定的位址並帶入查詢參數下載 Json 資料，自動以 Json.Net 轉回指定的型別物件
+            </summary>
+            <typeparam name="T">回傳的型別</typeparam>
+            <param name="url">下載位置</param>
+            <param name="paras">key-value 查詢參數</param>
+            <param name="headers">設定 http header(contentType、Authorization...)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.UploadString(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            使用 Post 方法呼叫遠端API
+            </summary>
+            <param name="url">api 位址</param>
+            <param name="postJson">傳送的資料，Json字串</param>
+            <param name="headers">設定 http header(contentType、Authorization...)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.UploadString``1(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            使用 Post 方法呼叫遠端API，並以 Json.Net 轉回指定的型別物件
+            </summary>
+            <param name="url">api 位址</param>
+            <param name="postJson">傳送的資料，Json字串</param>
+            <param name="headers">設定 http header(contentType、Authorization...)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.HttpHelper.UploadString``1(System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            POST 資料
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="postObject"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.IPAddressHelper">
+            <summary>
+            檢查輸入的 IP 位址是否位於允許範圍內
+            </summary>
+            <remarks>https://stackoverflow.com/questions/2138706/how-to-check-a-input-ip-fall-in-a-specific-ip-range</remarks>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.IPAddressHelper.IpValue(System.Byte[])">
+            <summary>
+            將 ip 位址轉為 integer
+            </summary>
+            <param name="ipBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.IPAddressHelper.IsInRange(System.Net.IPAddress,System.Net.IPAddress,System.Net.IPAddress)">
+            <summary>
+            檢查是否於範圍內
+            </summary>
+            <param name="address">要檢查的IP位址</param>
+            <param name="lower">IP範圍最小值</param>
+            <param name="upper">IP範圍最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.IPAddressHelper.IsInRange(System.String,System.String,System.String)">
+            <summary>
+            檢查是否於範圍內
+            </summary>
+            <param name="address">要檢查的IP位址</param>
+            <param name="lower">IP範圍最小值</param>
+            <param name="upper">IP範圍最大值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.LinqHelper">
+            <summary>
+            LINQ 小幫手
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.LinqHelper.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            where
+            </summary>
+            <typeparam name="T"> data </typeparam>
+            <param name="source">    source data </param>
+            <param name="condition"> 條件成立時 </param>
+            <param name="predicate"> 查詢條件 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.LinqHelper.ToDataTable``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{System.String})">
+            <summary>
+            將強行別物件轉成 DataTable 的擴充方法
+            </summary>
+            <typeparam name="T"> Entity Class Only </typeparam>
+            <param name="query">   擴充物件本身 </param>
+            <param name="columns"> OPTIONAL 需要輸出的欄位 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.LinqHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            IEnumerable is Empty or null
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.MailHelper">
+            <summary>
+            寄信
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.MailHelper.SendMail(System.String,System.String,System.String,System.Net.Mail.MailAddress)">
+            <summary>
+            Sends the mail.
+            </summary>
+            <param name="sendTo">收件者信箱</param>
+            <param name="subject">信件主旨</param>
+            <param name="mailContent">信件內容</param>
+            <param name="sendFrom">寄件者資訊</param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.PhotoHelper">
+            <summary>
+            圖片處理
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.ToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Image的擴充功能, 將圖片寫入到記憶體資料流
+            </summary>
+            <param name="image"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.GetImageFormat(System.String)">
+            <summary>
+            依輸入的文字回傳圖片格式類別, 預設回傳 ImageFormat.Jpeg
+            </summary>
+            <param name="contentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.StreamToImage(System.IO.Stream)">
+            <summary>
+            資料流轉換成圖片
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.BytesToImage(System.Byte[])">
+            <summary>
+            二位元陣列轉換成圖片
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.Base64ToImage(System.String,System.Int32@)">
+            <summary>
+            base64字串轉換成圖片, 並回傳圖片大小
+            </summary>
+            <param name="base64String"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.Base64ToImage(System.String)">
+            <summary>
+            由base64字串取得圖片以及 content-type 等相關資訊
+            </summary>
+            <param name="base64String"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.ImageToBase64(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            圖片轉換成base64字串
+            </summary>
+            <param name="image"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.CreatePhoto(System.String)">
+            <summary>
+            將上傳檔案類型 Base64 字串轉為圖片資訊
+            </summary>
+            <param name="base64">Base64 字串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.CreatePhoto(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            將上傳檔案類型 IFormFile 轉為圖片資訊
+            </summary>
+            <param name="file">IFormFile 檔案介面</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.CreatePhoto(System.String,System.String,System.String)">
+            <summary>
+            建立圖片
+            </summary>
+            <param name="url"></param>
+            <param name="account"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.ResizeImage(System.Drawing.Image,System.Int32)">
+            <summary>
+            指定寬度，等比縮小圖片
+            </summary>
+            <param name="image">圖片</param>
+            <param name="width">指定寬度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.CropAtRectangle(System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            指定寬高，縮小並剪裁
+            </summary>
+            <param name="ori">原始圖片</param>
+            <param name="width">寬度</param>
+            <param name="height">高度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.Crop(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            剪裁圖片
+            </summary>
+            <param name="bitmap">原始圖片</param>
+            <param name="rectangle">剪裁範圍</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.SetupExif(System.Drawing.Image,System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            將原始圖片的EXIF屬性設定入縮小的圖片
+            </summary>
+            <param name="ori">原始圖片</param>
+            <param name="small">小圖</param>
+            <param name="width">寬度</param>
+            <param name="height">高度</param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.SetupExif(Geo.Smart.CommonCore.Models.PhotoBase)">
+            <summary>
+            設定相片的拍照日期以及經緯度資訊
+            </summary>
+            <param name="photo">照片資訊</param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PhotoHelper.RotateImage(System.Drawing.Image)">
+            <summary>
+            旋轉圖片
+            </summary>
+            <param name="img">原始圖片</param>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.PositioningHelper">
+            <summary>
+            定位共用方法
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.ExecutePosition(System.Collections.Generic.List{Geo.Smart.CommonCore.Gis.Circle},System.Double)">
+            <summary>
+            執行定位
+            </summary>
+            <param name="circles"></param>
+            <param name="minDistance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.Just2PointPosition(System.Collections.Generic.List{Geo.Smart.CommonCore.Gis.Circle})">
+            <summary>
+            剛好兩點定位
+            </summary>
+            <param name="circleList"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.Beyond3PointPosition(System.Collections.Generic.List{Geo.Smart.CommonCore.Gis.Circle})">
+            <summary>
+            三點以上定位
+            </summary>
+            <param name="circleList"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.GetIntersectionPoint(Geo.Smart.CommonCore.Gis.Circle,Geo.Smart.CommonCore.Gis.Circle)">
+            <summary>
+            取得兩元的交點
+            </summary>
+            <param name="c1"> </param>
+            <param name="c2"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.GetNearestIntersecionPoint(System.Collections.Generic.List{Geo.Smart.CommonCore.Gis.Point},System.Double,System.Double)">
+            <summary>
+            選出points內離(x,y)最近的點
+            </summary>
+            <param name="points"> 傳入的點集合 </param>
+            <param name="x">      x座標 </param>
+            <param name="y">      y座標 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.CalculateDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            求出兩點距離
+            </summary>
+            <param name="x1"> 點1-X </param>
+            <param name="y1"> 點1-Y </param>
+            <param name="x2"> 點2-X </param>
+            <param name="y2"> 點2-Y </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.PositioningHelper.GetCenter(System.Collections.Generic.List{Geo.Smart.CommonCore.Gis.Point})">
+            <summary>
+            取得點的中心
+            </summary>
+            <param name="points"> 點集合 </param>
+            <returns> </returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.QrCodeHelper">
+            <summary>
+            產製 QrCode 圖片
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QrCodeHelper.Generate(Geo.Smart.CommonCore.Models.QrCodeSetting)">
+            <summary>
+            產製QrCode圖檔
+            </summary>
+            <param name="setting"> 建立 QrCode 的參數設定 </param>
+            <returns> Bitmap </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QrCodeHelper.Generate(System.String)">
+            <summary>
+            產製圖片
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QrCodeHelper.GenerateImageBytes(Geo.Smart.CommonCore.Models.QrCodeSetting)">
+            <summary>
+            產生影像陣列
+            </summary>
+            <param name="setting"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.QueryHelper">
+            <summary>
+            查詢小幫手，不使用
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QueryHelper.ToPage``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            進入資料庫，取得分頁資料
+            </summary>
+            <typeparam name="T"> 資料Entity </typeparam>
+            <param name="query"> 查詢參數 </param>
+            <param name="param"> 分頁資訊 </param>
+            <returns> 回傳 List Entity </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QueryHelper.ToPageResult``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            進入資料庫，取得分頁資料
+            </summary>
+            <typeparam name="T"> 資料Entity </typeparam>
+            <param name="query"> 查詢參數 </param>
+            <param name="param"> 分頁資訊 </param>
+            <returns> 回傳 PageResult entity </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QueryHelper.ToPageResultAsync``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            進入資料庫使用 async 取得分頁資料
+            </summary>
+            <typeparam name="T"> 資料Entity </typeparam>
+            <param name="query"> 查詢參數 </param>
+            <param name="param"> 分頁資訊 </param>
+            <returns> 回傳 PageResult entity </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QueryHelper.Sorting``1(System.Linq.IQueryable{``0},System.String,System.Boolean)">
+            <summary>
+            依指定欄位、指定排序方式做排序
+            </summary>
+            <typeparam name="T"> </typeparam>
+            <param name="source">         資料集合 </param>
+            <param name="sortExpression"> 排序欄位 </param>
+            <param name="sortingDesc">    排序方式true：遞減排序，false：遞增排序 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QueryHelper.ToPaginationResult``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            進入資料庫，取得分頁資料
+            </summary>
+            <typeparam name="T"> 資料Entity </typeparam>
+            <param name="query"> 查詢參數 </param>
+            <param name="param"> 分頁資訊 </param>
+            <returns> 回傳 PageResult entity </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.QueryHelper.ToPaginationResultAsync``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            進入資料庫使用 async 取得分頁資料
+            </summary>
+            <typeparam name="T"> 資料Entity </typeparam>
+            <param name="query"> 查詢參數 </param>
+            <param name="param"> 分頁資訊 </param>
+            <returns> 回傳 PageResult entity </returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.ReCaptchaHelper">
+            <summary>
+            Google reCAPTCHA V2 token 驗證
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReCaptchaHelper.Verify(Geo.Smart.CommonCore.Models.ReCaptchaParam)">
+            <summary>
+            驗證
+            </summary>
+            <param name="para">傳送 reCAPTCHA 參數</param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.ReflectionHelper">
+            <summary>
+            反射、映射 小幫手
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.CreateInstance(System.String)">
+            <summary>
+            將className,dllName呼叫預設建構子來建立物件並傳回
+            </summary>
+            <param name="classAndAssemblyName">格式為className,dllName</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.CreateInstance(System.String,System.String)">
+            <summary>
+            呼叫有引數的建構子來建立物件並傳回
+            </summary>
+            <param name="classAndAssemblyName"></param>
+            <param name="parameterValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.getTypeFromclassAndAssemblyName(System.String)">
+            <summary>
+            將className,dllName字串解析並傳回該Type
+            </summary>
+            <param name="classAndAssemblyName">格式為className,dllName</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.ConvertString2Object(System.String,System.String)">
+            <summary>
+            將字串轉換為物件
+            </summary>
+            <param name="objectInfo"></param>
+            <param name="classAndAssemblyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.ConvertString2Object(System.String,System.Type)">
+            <summary>
+            將包括物件相關屬性值的字串解析為物件
+            該物件必需有TypeConverter
+            </summary>
+            <param name="objectInfo"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.ParseParameterValues(System.String,System.Type[]@)">
+            <summary>
+            解析參數值
+            </summary>
+            <param name="parameterValues"></param>
+            <param name="types"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.ParseParameterValues(System.String)">
+            <summary>
+            解析參數值
+            </summary>
+            <param name="parameterValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.SetPropertyValue(System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            設定 Property 的值
+            </summary>
+            <param name="targetObejct"></param>
+            <param name="propertyValues"></param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.SetPropertyValue(System.Object,System.String,System.String)">
+            <summary>
+            設定 Property 的值
+            </summary>
+            <param name="targetObejct"></param>
+            <param name="propertyName"></param>
+            <param name="propertyValue"></param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.InvokeMethod(System.Object,System.String,System.String)">
+            <summary>
+            執行方法
+            </summary>
+            <param name="targetObject"></param>
+            <param name="methodName"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.CreateInstance(System.String,System.String,System.Object[])">
+            <summary>
+            利用映射(Reflection)方法來建立物件，可帶入建構子所需的參數
+            </summary>
+            <param name="className">類別名稱</param>
+            <param name="dllName">元件名稱</param>
+            <param name="parameters">建構子所需的所有參數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.InvokeMethod(System.Object,System.String,System.Object[])">
+            <summary>
+            執行物件的方法
+            </summary>
+            <param name="targetObject">要執行方法的物件</param>
+            <param name="methodName">方法名稱</param>
+            <param name="parameters">執行方法的參數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ReflectionHelper.AllPropertyToDictionary``1(``0)">
+            <summary>
+            將物件的所有屬性轉換成 Dictionary 物件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.RegexHelper">
+            <summary>
+            規則運算式的一些擴充方法
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RegexHelper.MakeHyperLink(System.String)">
+            <summary>
+            將文字中為超連結的字串加上超連結TAG
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RegexHelper.HyperLinkValidator(System.String)">
+            <summary>
+            驗證連結
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RegexHelper.ValidPassword(System.String)">
+            <summary>
+            驗證密碼規則
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.ResultHelper">
+            <summary>
+            回傳結果 Helper
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ResultHelper.Success``1(``0)">
+            <summary>
+            取得成功的 Result
+            </summary>
+            <typeparam name="T">回傳資料類別</typeparam>
+            <param name="data">回傳的資料</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ResultHelper.Failure``1(System.String,``0)">
+            <summary>
+            取得失敗的 Result
+            </summary>
+            <typeparam name="T">回傳資料類別</typeparam>
+            <param name="message">錯誤資訊</param>
+            <param name="data">回傳的資料</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ResultHelper.PaginationSuccessAsync``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            取得成功的 PaginationResult
+            </summary>
+            <typeparam name="T">回傳資料類別</typeparam>
+            <param name="query">帶排序的資料</param>
+            <param name="param">分頁參數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ResultHelper.PaginationSuccess``1(System.Linq.IQueryable{``0},Geo.Smart.CommonCore.Models.QueryBase)">
+            <summary>
+            取得成功的 PaginationResult
+            </summary>
+            <typeparam name="T">回傳資料類別</typeparam>
+            <param name="query">帶排序的資料</param>
+            <param name="param">分頁參數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ResultHelper.PaginationFailure``1(System.String)">
+            <summary>
+            取得失敗的 Result
+            </summary>
+            <typeparam name="T">回傳資料類別</typeparam>
+            <param name="message">錯誤資訊</param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.RssXmlReader">
+            <summary>
+            為了解決 RSS 元件 [SyndicationFeed] 解析 DateTime錯誤而新增的擴充類別
+            https://stackoverflow.com/questions/23418875/c-sharp-syndicationfeed-rss-parsing-date-issue
+            https://stackoverflow.com/questions/23418875/c-sharp-syndicationfeed-rss-parsing-date-issue
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RssXmlReader.#ctor(System.IO.Stream)">
+            <summary>
+            RSS Reader
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RssXmlReader.#ctor(System.String)">
+            <summary>
+            RSS Reader
+            </summary>
+            <param name="inputUri"></param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RssXmlReader.ReadStartElement">
+            <summary>
+            讀取開始的元素
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RssXmlReader.ReadEndElement">
+            <summary>
+            讀取結束的元素
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.RssXmlReader.ReadString">
+            <summary>
+            讀取字串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.SimpAesHelper">
+            <summary>
+            簡易 AES 加密
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.SimpAesHelper.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.SimpAesHelper.Decrypt(System.String,System.String,System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.StringHelper">
+            <summary>
+            字串小幫手
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.TranNumberToChinese(System.Int32)">
+            <summary>
+            將數字轉換成中文大寫
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.HtmlToPlainText(System.String)">
+            <summary>
+            取 HTML 的 innerText
+            https://stackoverflow.com/questions/286813/how-do-you-convert-html-to-plain-text
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.ToPascalCase(System.String)">
+            <summary>
+            轉換成 Pascal (每個單字的第一個字母大寫)格式
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.ToCamelCase(System.String)">
+            <summary>
+            轉換成 Camel (除了第一個單字全小寫外，其餘每個單字的第一個字母大寫)格式
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.ToKebabCase(System.String)">
+            <summary>
+            轉換成 Kebab (羊肉串，字母全小寫，減號分隔)格式
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+            <remarks> looks-like-this </remarks>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.ToSnakeCase(System.String)">
+            <summary>
+            轉換成 Snake 格式，全小寫底線分隔
+            </summary>
+            <param name="source"></param>
+            <returns> look_like_this </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.ToTrainCase(System.String)">
+            <summary>
+            轉換成 Train 格式，第一個字母大寫，減號分隔
+            </summary>
+            <param name="source"></param>
+            <returns> Look-Like-This </returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.StringHelper.ToSqlCase(System.String)">
+            <summary>
+            轉換成 全大寫寫底線分隔 格式，自定義新增由SnakeCase 轉換而來
+            </summary>
+            <param name="source"></param>
+            <returns> LOOK_LIKE_THIS </returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Helpers.ZipHelper">
+            <summary>
+            壓縮
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ZipHelper.Compress(System.Collections.Generic.IDictionary{System.String,System.Byte[]})">
+            <summary>
+            壓縮檔案
+            </summary>
+            <param name="files">
+            Key   : 檔名
+            Value : 檔案 byte array
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Helpers.ZipHelper.Decompress(System.Byte[])">
+            <summary>
+            解壓縮
+            </summary>
+            <param name="zipBytes">Zip 檔案的 Bytes Array</param>
+            <returns></returns>
+            <remark>
+            回傳 Dictionary
+            Key   : 檔名
+            Value : 檔案的 Bytes Array
+            </remark>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Interface.IAuditableEntity">
+            <summary>
+            Auditable
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IAuditableEntity.CreatedBy">
+            <summary>
+            CreatedBy
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IAuditableEntity.CreatedDate">
+            <summary>
+            CreatedDate
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IAuditableEntity.IsEnabled">
+            <summary>
+            IsEnabled
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IAuditableEntity.UpdatedBy">
+            <summary>
+            UpdatedBy
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IAuditableEntity.UpdatedDate">
+            <summary>
+            UpdatedDate
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Interface.ICryptoKey.GetIV">
+            <summary>
+            取得對稱演算法的初始化向量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Interface.ICryptoKey.GetKey">
+            <summary>
+            取得 System.Security.Cryptography.TripleDES 演算法的秘密金鑰
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Interface.IPageResult`1">
+            <summary>
+            Result
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPageResult`1.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPageResult`1.PageSize">
+            <summary>
+            PageSize
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPageResult`1.CurrentPage">
+            <summary>
+            CurrentPage
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPageResult`1.Total">
+            <summary>
+            Total
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPageResult`1.TotalPages">
+            <summary>
+            TotalPages
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Interface.IPaginationResult">
+            <summary>
+            分頁查詢結果
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPaginationResult.PageSize">
+            <summary>
+            一頁幾筆
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPaginationResult.CurrentPage">
+            <summary>
+            目前頁數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IPaginationResult.TotalPages">
+            <summary>
+            總筆數
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Interface.IResult`1">
+            <summary>
+            所有的資料異動，包括新增修改刪除等，都必須回傳此類別
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IResult`1.Data">
+            <summary>
+            操作的資料
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IResult`1.ID">
+            <summary>
+            唯一編碼
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IResult`1.Message">
+            <summary>
+            操作失敗訊息
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Interface.IResult`1.Success">
+            <summary>
+            操作狀態
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Interface.ISymmerticDecrypt.Decrypt(System.String,Geo.Smart.CommonCore.Interface.ICryptoKey)">
+            <summary>
+            解密
+            </summary>
+            <param name="encriptText">待解密字串</param>
+            <param name="cryptoKey">加密金鑰</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Interface.ISymmerticDecrypt.GetDecryptContent">
+            <summary>
+            取得解密內容
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Interface.ISymmerticEncrypt.Encrypt(System.String,Geo.Smart.CommonCore.Interface.ICryptoKey)">
+            <summary>
+            加密
+            </summary>
+            <param name="plaintext">待加密內容</param>
+            <param name="cryptoKey">加密金鑰</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Interface.ISymmerticEncrypt.GetEncryptContent">
+            <summary>
+            取得加密內容
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.AuditableEntity">
+            <summary>
+            資料狀態父類別
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.AuditableEntity.CreatedBy">
+            <summary>
+            新增的使用者
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.AuditableEntity.CreatedDate">
+            <summary>
+            新增時間
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.AuditableEntity.IsEnabled">
+            <summary>
+            是否啟用,刪除後為0
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.AuditableEntity.UpdatedBy">
+            <summary>
+            修改的使用者
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.AuditableEntity.UpdatedDate">
+            <summary>
+            修改時間
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.CodeName">
+            <summary>
+            常用的 Key、Value 物件，或給 DropDownList 使用
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.CodeName.Code">
+            <summary>
+            KEY
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.CodeName.Name">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.Db2AuditableEntity">
+            <summary>
+            資料狀態父類別 ( DB2 使用)
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Db2AuditableEntity.CreatedBy">
+            <summary>
+            新增的使用者
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Db2AuditableEntity.CreatedDate">
+            <summary>
+            新增時間
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Db2AuditableEntity.IsEnabled">
+            <summary>
+            是否啟用,刪除後為 0
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Db2AuditableEntity.UpdatedBy">
+            <summary>
+            修改的使用者
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Db2AuditableEntity.UpdatedDate">
+            <summary>
+            修改時間
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.Base64ImageInfo">
+            <summary>
+            圖片資訊
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Base64ImageInfo.ContentType">
+            <summary>
+            類型
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Base64ImageInfo.Extension">
+            <summary>
+            副檔名
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Base64ImageInfo.Photo">
+            <summary>
+            圖片
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Base64ImageInfo.Size">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.ImageTypeInfo">
+            <summary>
+            圖片相關資訊Model
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ImageTypeInfo.Extension">
+            <summary>
+            副檔名
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ImageTypeInfo.ImageFormat">
+            <summary>
+            圖片ContentType的C# 列舉
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ImageTypeInfo.ContentType">
+            <summary>
+            圖片類型
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.KeyName">
+            <summary>
+            常用的 Key、Value 物件，或給 DropDownList 使用
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.KeyName.Key">
+            <summary>
+            KEY
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.KeyName.Name">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.PageResult`1">
+            <summary>
+            分頁查詢結果
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PageResult`1.Data">
+            <summary>
+            泛型查詢結果資料
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PageResult`1.PageSize">
+            <summary>
+            一頁幾筆
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PageResult`1.CurrentPage">
+            <summary>
+            目前頁數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PageResult`1.Total">
+            <summary>
+            總筆數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PageResult`1.TotalPages">
+            <summary>
+            總頁數，自動計算
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.PaginationResult`1">
+            <summary>
+            分頁查詢結果
+            提供 Success、Message
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.PaginationResult`1.#ctor">
+            <summary>
+            給初始值
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PaginationResult`1.Data">
+            <summary>
+            泛型查詢結果資料
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PaginationResult`1.PageSize">
+            <summary>
+            一頁幾筆
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PaginationResult`1.CurrentPage">
+            <summary>
+            目前頁數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PaginationResult`1.Total">
+            <summary>
+            總筆數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PaginationResult`1.TotalPages">
+            <summary>
+            總頁數，自動計算
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.PhotoBase">
+            <summary>
+            照片資料
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.PhotoId">
+            <summary>
+            照片編號
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.Image">
+            <summary>
+            圖片
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.FileName">
+            <summary>
+            檔名
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.Extention">
+            <summary>
+            副檔名
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.Size">
+            <summary>
+            照片檔案大小
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.ContentType">
+            <summary>
+            照片格式
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.Longitude">
+            <summary>
+            經度
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.Latitude">
+            <summary>
+            緯度
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.PhotoDate">
+            <summary>
+            拍照時間
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PhotoBase.CreatedDate">
+            <summary>
+            照片上傳時間
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.PublishEntity">
+            <summary>
+            增加是否上架(IsPublished)、起始日期(StartDate)、排序(Sorting)等三個上架管理欄位
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.PublishEntity.#ctor">
+            <summary>
+            建構式
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PublishEntity.StartDate">
+            <summary>
+            發布日期
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PublishEntity.IsPublished">
+            <summary>
+            是否上架
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.PublishEntity.Sorting">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.QrCodeSetting">
+            <summary>
+            建立 QrCode 時所需的參數設定
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.QrCodeSetting.#ctor">
+            <summary>
+            建構子，預設為寬度300、留邊5的圖片
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QrCodeSetting.Content">
+            <summary>
+            要產製的QrCode內容
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QrCodeSetting.Width">
+            <summary>
+            圖片寬度
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QrCodeSetting.Height">
+            <summary>
+            圖片高度
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QrCodeSetting.Margin">
+            <summary>
+            圖框留邊距離
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.QueryBase">
+            <summary>
+            查詢條件基礎類別
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.QueryBase.#ctor">
+            <summary>
+            建構式
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QueryBase.CurrentPage">
+            <summary>
+            目前為第幾頁
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QueryBase.PageSize">
+            <summary>
+            每頁幾筆
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QueryBase.Keyword">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QueryBase.Sorting">
+            <summary>
+            排序(ColumnIndex)
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.QueryBase.SortingDesc">
+            <summary>
+            反序
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.ReCaptchaParam">
+            <summary>
+            傳送 reCAPTCHA 參數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaParam.Secret">
+            <summary>
+            Required. The shared key between your site and reCAPTCHA.
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaParam.Response">
+            <summary>
+            Required. The user response token provided by the reCAPTCHA client-side integration on your site.
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaParam.RemoteIp">
+            <summary>
+            Optional. The user's IP address.
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.ReCaptchaResult">
+            <summary>
+            reCAPTCHA 驗證結果
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaResult.Success">
+            <summary>
+            驗證結果
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaResult.ChallengeTs">
+            <summary>
+            timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaResult.ApkPackageName">
+            <summary>
+            the package name of the app where the reCAPTCHA was solved
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaResult.HostName">
+            <summary>
+            the package name of the app where the reCAPTCHA was solved
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.ReCaptchaResult.ErrorCodes">
+            <summary>
+            錯誤代碼
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.Result`1">
+            <summary>
+            所有的資料異動，包括新增修改刪除等，都必須回傳此類別
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.Result`1.#ctor">
+            <summary>
+            Constructor Success=false
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.Result`1.#ctor(System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="success">success</param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Models.Result`1.#ctor(System.String)">
+            <summary>
+            Constructor with error message.
+            </summary>
+            <param name="message">Error Message</param>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Result`1.Data">
+            <summary>
+            操作的資料
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Result`1.ErrorCode">
+            <summary>
+            錯誤代碼
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Result`1.ID">
+            <summary>
+            唯一編碼
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Result`1.Message">
+            <summary>
+            操作失敗訊息
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.Result`1.Success">
+            <summary>
+            操作狀態
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.TgosAddress">
+            <summary>
+            TGOS 地址定位回傳的地址
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.County">
+            <summary>
+            縣市
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.District">
+            <summary>
+            行政區、鄉鎮市區
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Village">
+            <summary>
+            村里
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Neighborhood">
+            <summary>
+            鄰
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Road">
+            <summary>
+            路段
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Section">
+            <summary>
+            段
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Lane">
+            <summary>
+            巷
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Alley">
+            <summary>
+            弄
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.SubAlley">
+            <summary>
+            弄
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Tong">
+            <summary>
+            衖??
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.No">
+            <summary>
+            門牌號碼
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.SubNo">
+            <summary>
+            門牌號碼，子號
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.X">
+            <summary>
+            精度
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosAddress.Y">
+            <summary>
+            緯度
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.TgosGeoCodingResult">
+            <summary>
+            TGOS 地址定位結果物件
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosGeoCodingResult.TgosInfo">
+            <summary>
+            Info
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosGeoCodingResult.AddressList">
+            <summary>
+            地址清單
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Models.TgosInfo">
+            <summary>
+            TGOS Info
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InAddress">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InSRS">
+            <summary>
+            SRS
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InFuzzyType">
+            <summary>
+            Fuzzy Type
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InFuzzyBuffer">
+            <summary>
+            Fuzzy Buffer
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsOnlyFullMatch">
+            <summary>
+            全相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockCounty">
+            <summary>
+            縣市相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockTown">
+            <summary>
+            行政區相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockVillage">
+            <summary>
+            村里相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockRoadSection">
+            <summary>
+            路相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockLane">
+            <summary>
+            巷相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockAlley">
+            <summary>
+            弄相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsLockArea">
+            <summary>
+            區相符才算
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InIsSameNumber_SubNumber">
+            <summary>
+            門牌相符才算門牌
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InCanIgnoreVillage">
+            <summary>
+            是否忽略村里
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InCanIgnoreNeighborhood">
+            <summary>
+            是否忽略鄰
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.InReturnMaxCount">
+            <summary>
+            回傳最大筆數
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.OutTotal">
+            <summary>
+            回傳總數量
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.OutMatchType">
+            <summary>
+            相符類型
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.OutMatchCode">
+            <summary>
+            相符代碼
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Models.TgosInfo.OutTraceInfo">
+            <summary>
+            追蹤資訊
+            </summary>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Photo.GpsRational">
+            <summary>
+            照片 EXIF 解析座標資訊
+            度分秒轉換
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.GpsRational.#ctor(System.Byte[])">
+            <summary>
+            EXIF 座標資訊度分秒轉換
+            </summary>
+            <param name="bytes">EXIF data</param>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Photo.GpsRational.Hours">
+            <summary>
+            時
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Photo.GpsRational.Minutes">
+            <summary>
+            分
+            </summary>
+        </member>
+        <member name="P:Geo.Smart.CommonCore.Photo.GpsRational.Seconds">
+            <summary>
+            秒
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.GpsRational.ToString">
+            <summary>
+            傳回代表目前物件的字串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.GpsRational.ToString(System.String)">
+            <summary>
+            ToString
+            </summary>
+            <param name="separator">分隔符號</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.GpsRational.GetCoordinate">
+            <summary>
+            取得浮點數座標
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Geo.Smart.CommonCore.Photo.Rational">
+            <summary>
+            解析圖片經緯度
+            </summary>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.Rational.#ctor(System.Byte[])">
+            <summary>
+            建構式-將要解析的圖片實體檔案傳入做經緯度，時間等照片資訊解析
+            </summary>
+            <param name="bytes">圖片實體檔案</param>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.Rational.ToDouble">
+            <summary>
+            將私有變數分子分母算成小數
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.Rational.ToString(System.String)">
+            <summary>
+            將私有變數_num, _denom組成字串
+            </summary>
+            <param name="separator">分隔符號</param>
+            <returns></returns>
+        </member>
+        <member name="M:Geo.Smart.CommonCore.Photo.Rational.ToString">
+            <summary>
+            複寫.ToString(); 方法
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

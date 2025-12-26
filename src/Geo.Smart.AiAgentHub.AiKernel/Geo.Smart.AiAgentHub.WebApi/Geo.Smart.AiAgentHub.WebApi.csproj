@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);</NoWarn>
+    <UserSecretsId>7361176b-8c80-4c4e-8250-7f5b9a18e313</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="sonarqube.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Geo.Smart.CommonCore" Version="1.2.1" GeneratePathProperty="true" />
+      <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="8.0.22" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.22" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.22" />
+      <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+      <PackageReference Include="NetTopologySuite.IO.GeoJSON4STJ" Version="4.0.0" />
+      <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+      <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="7.0.3" />
+      <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.4" />
+      <PackageReference Include="System.Text.Json" Version="8.0.6" />
+      <PackageReference Include="UAParser" Version="3.1.47" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Geo.Smart.CommonCore.Helpers" />
+    <Using Include="Geo.Smart.CommonCore.Models" />
+    <Using Include="Geo.Smart.AiAgentHub.DataAccess" />
+    <Using Include="Geo.Smart.AiAgentHub.DataAccess.Entities" />
+    <Using Include="Geo.Smart.AiAgentHub.Entities" />
+    <Using Include="Geo.Smart.AiAgentHub.Entities.Enums" />
+    <Using Include="Geo.Smart.AiAgentHub.Entities.Identity" />
+    <Using Include="Geo.Smart.AiAgentHub.Entities.Vms" />
+    <Using Include="Geo.Smart.AiAgentHub.Entities.Vms.UserManage" />
+    <Using Include="Geo.Smart.AiAgentHub.Services" />
+    <Using Include="Geo.Smart.AiAgentHub.Services.Common" />
+    <Using Include="Geo.Smart.AiAgentHub.Services.Contracts" />
+    <Using Include="Geo.Smart.AiAgentHub.Services.Helpers" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Geo.Smart.CommonCore.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.AiKernel\Geo.Smart.AiAgentHub.AiKernel.csproj" />
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.DataAccess\Geo.Smart.AiAgentHub.DataAccess.csproj" />
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.Entities\Geo.Smart.AiAgentHub.Entities.csproj" />
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.Infras\Geo.Smart.AiAgentHub.Infras.csproj" />
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.Services\Geo.Smart.AiAgentHub.Services.csproj" />
+  </ItemGroup>
+
+</Project>

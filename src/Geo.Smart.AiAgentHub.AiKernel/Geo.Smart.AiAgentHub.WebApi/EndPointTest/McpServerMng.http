@@ -1,0 +1,57 @@
+###
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 新增 MCP Server 設定資料
+POST {{HostAddress}}/McpServerMng/Create
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "name": "DemoSC_FgisMCP",
+  "mcpServerType": 2,
+  "sseUrl": "https://fgismcp.geo.local/",
+  "stdioCommand": "",
+  "stdioArgs": [],
+  "stdioEnv": {},
+  "Tools": []
+}
+
+### 取得 MCP Server 詳細資料
+Get {{HostAddress}}/McpServerMng/Detail/83FF3FAC-D346-4AD8-AF20-658F25721977
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 新增 IM 的 MCP Server
+POST {{HostAddress}}/McpServerMng/Create
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "name": "IM_MCP_Test_Server",
+  "mcpServerType": 1,
+  "sseUrl": "https://imai.geo.local/sse",
+  "stdioCommand": "",
+  "stdioArgs": [],
+  "stdioEnv": {},
+  "Tools": []
+}
+
+### 新增 SG 的 MCP Server
+POST {{HostAddress}}/McpServerMng/Create
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "name": "SG_MCP_RAG_Server",
+  "mcpServerType": 2,
+  "sseUrl": "https://sgai.geo.local/",
+  "stdioCommand": "",
+  "stdioArgs": [],
+  "stdioEnv": {},
+  "Tools": []
+}

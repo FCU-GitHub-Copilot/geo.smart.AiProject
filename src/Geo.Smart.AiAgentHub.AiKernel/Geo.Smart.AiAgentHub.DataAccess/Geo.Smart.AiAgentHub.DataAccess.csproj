@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591;CS8618;CS8766;CS8613;</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Audit.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Geo.Smart.CommonCore" Version="1.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="8.0.22" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Using Remove="System.IO" />
+    <Using Include="Geo.Smart.AiAgentHub.Infras.Enums" />
+    <Using Include="Geo.Smart.AiAgentHub.DataAccess.Configuration" />
+    <Using Include="Geo.Smart.AiAgentHub.DataAccess.Entities" />
+    <Using Include="Geo.Smart.AiAgentHub.DataAccess.Interface" />
+    <Using Include="Geo.Smart.CommonCore.Models" />
+    <Using Include="Microsoft.AspNetCore.Http" />
+    <Using Include="Microsoft.AspNetCore.Identity" />
+    <Using Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <Using Include="Microsoft.Data.SqlClient" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="Microsoft.EntityFrameworkCore.ChangeTracking" />
+    <Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
+    <Using Include="Microsoft.Extensions.Configuration" />
+    <Using Include="System.Data" />
+    <Using Include="System.Data.SqlTypes" />
+    <Using Include="System.Reflection" />
+    <Using Include="System.Security.Claims" />
+    <Using Include="System.Text.Json.Serialization" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.Infras\Geo.Smart.AiAgentHub.Infras.csproj" />
+  </ItemGroup>
+</Project>

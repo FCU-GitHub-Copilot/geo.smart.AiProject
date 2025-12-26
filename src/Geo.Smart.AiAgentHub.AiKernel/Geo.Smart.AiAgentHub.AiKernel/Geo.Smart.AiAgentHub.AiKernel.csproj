@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);SKEXP0001,SKEXP0010,SKEXP0110</NoWarn>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<Version>0.0.5</Version>
+	<Authors>joe@geo.com.tw</Authors>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
+	<IncludeBuildOutput>true</IncludeBuildOutput>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyInfras</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="readme.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Geo.Smart.CommonCore" Version="1.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.22" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.67.1" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.Google" Version="1.63.0-alpha" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.63.0-alpha" />
+    <PackageReference Include="ModelContextProtocol" Version="0.3.0-preview.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Geo.Smart.AiAgentHub.Infras\Geo.Smart.AiAgentHub.Infras.csproj"/>
+  </ItemGroup>
+
+  <Target Name="CopyInfras" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)Geo.Smart.AiAgentHub.Infras.dll">
+        <TargetPath>Geo.Smart.AiAgentHub.Infras.dll</TargetPath>
+      </BuildOutputInPackage>
+    </ItemGroup>
+  </Target>
+
+</Project>

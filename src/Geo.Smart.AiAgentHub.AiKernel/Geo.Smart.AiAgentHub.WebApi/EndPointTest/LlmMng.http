@@ -1,0 +1,42 @@
+###
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 新增 LLM 設定資料
+POST {{HostAddress}}/LlmMng/Create
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "serviceId": "[Test]openai-gpt-4o",
+  "modelId": "gpt-4o",
+  "llmSourceType": 0,
+  "apiKey": "XXXXX",
+  "endpoint": "",
+  "deploymentName": "",
+  "description": ""
+}
+
+### 取得 LLM 資料列表
+GET {{HostAddress}}/LlmMng/Query?CurrentPage=1&PageSize=10&Sorting=ServiceId&SortingDesc=false
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 取得 LLM 詳細資料 - ollama-gpt-oss:20b
+GET {{HostAddress}}/LlmMng/Detail/e7885d29-cc2f-42f3-8854-4d863af8ec99
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 刪除 LLM 詳細資料 - 不存在
+POST {{HostAddress}}/LlmMng/Delete/e7885d29-cc2f-42f3-0000-111122223333
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+
+

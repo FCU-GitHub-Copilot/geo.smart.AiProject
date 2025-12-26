@@ -1,0 +1,31 @@
+<Solution>
+  <Folder Name="/Ai/">
+    <Project Path="Geo.Smart.AiAgentHub.AiKernel/Geo.Smart.AiAgentHub.AiKernel.csproj" />
+    <Project Path="Geo.Smart.AiAgentHub.KmRag/Geo.Smart.AiAgentHub.KmRag.csproj" Id="2b4b4743-01de-437a-b98a-63ba23606692" />
+    <Project Path="Geo.Smart.AiAgentHub.McpSseServer/Geo.Smart.AiAgentHub.McpSseServer.csproj" />
+  </Folder>
+  <Folder Name="/Db/">
+    <Project Path="Geo.Smart.AiAgentHub.DbModel/Geo.Smart.AiAgentHub.DbModel.sqlproj" Id="f6484a55-e491-4514-902e-71055120280e">
+      <Build Solution="Release|*" />
+    </Project>
+    <Project Path="Geo.Smart.AiAgentHub.EfGenerator/Geo.Smart.AiAgentHub.EfGenerator.csproj" Id="dfe2a8d3-de2b-4a50-91ca-ee20ac6bb646">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="../../doc/ollama.md" />
+    <File Path="../../README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/Test/">
+    <Project Path="Geo.Smart.AiAgentHub.AiKernelTests/Geo.Smart.AiAgentHub.AiKernelTests.csproj" />
+    <Project Path="Geo.Smart.AiAgentHub.ServicesTests/Geo.Smart.AiAgentHub.ServicesTests.csproj" />
+  </Folder>
+  <Project Path="Geo.Smart.AiAgentHub.DataAccess/Geo.Smart.AiAgentHub.DataAccess.csproj" />
+  <Project Path="Geo.Smart.AiAgentHub.Entities/Geo.Smart.AiAgentHub.Entities.csproj" />
+  <Project Path="Geo.Smart.AiAgentHub.Infras/Geo.Smart.AiAgentHub.Infras.csproj" />
+  <Project Path="Geo.Smart.AiAgentHub.Services/Geo.Smart.AiAgentHub.Services.csproj" />
+  <Project Path="Geo.Smart.AiAgentHub.WebApi/Geo.Smart.AiAgentHub.WebApi.csproj" />
+</Solution>

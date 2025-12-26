@@ -1,0 +1,192 @@
+###
+# @name login
+POST {{HostAddress}}/Token/Login
+Content-Type: application/json
+{
+  "userName": "{{UserName}}",
+  "qoo": "{{Qoo}}",
+  "captchaId": "12345678-9012-3456-7890-123456789012",
+  "captcha": "{{Captcha}}"
+}
+
+### 取得聊天室清單
+GET {{HostAddress}}/ChatRoom/Query?CurrentPage=1&PageSize=10&Sorting=CreatedDate&SortingDesc=true
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 取得 AI 專案設定的資料
+GET {{HostAddress}}/ChatRoom/ModelTools
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 第一次提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "介紹公路車環法賽的歷史",
+  "serviceId": "openai-gpt-4o",
+  "ToolSelected": {}
+}
+
+### 取得聊天室資料
+GET {{HostAddress}}/ChatRoom/Detail/AB6AC5AD-028C-4DA2-AD46-FA8DF0768FC4
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### 第二次提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": "AB6AC5AD-028C-4DA2-AD46-FA8DF0768FC4",
+  "message": "Jordan 跟 Bryant 誰比較厲害?",
+  "serviceId": "openai-gpt-4o",
+  "ToolSelected": {}
+}
+
+### MCP 工具提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": "AB6AC5AD-028C-4DA2-AD46-FA8DF0768FC4",
+  "message": "提供我已登記工廠【益誠工業社】的基本資料?",
+  "serviceId": "openai-gpt-4o",
+  "ToolSelected": {
+    "DemoSC_FgisMCP":[
+      "factory_query"
+    ]
+  }
+}
+
+### 提問與工具禁用
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "提供我已登記工廠【益誠工業社】的基本資料?",
+  "serviceId": "openai-gpt-4o",
+  "ToolSelected": {
+    "DemoSC_FgisMCP":[
+      "toggleLayer"
+    ]
+  }
+}
+
+
+### 提問時包含圖片附件 - OpenAI OK
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "這張圖片的內容是甚麼?",
+  "serviceId": "openai-gpt-4o",
+  "toolSelected": { },
+  "images":[
+    "https://cdn.hk01.com/di/media/images/dw/20210130/432017263311196160321407.jpeg/mx30rjy6zjULv92r9GM_eHTEBj0s0PPwu-iWbrvolm4?v=w1920"
+  ]
+}
+
+### 提問時包含圖片附件 - Ollama不行，需要帳號登入
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "這張圖片的內容是甚麼?",
+  "serviceId": "ollama-gpt-oss:20b",
+  "toolSelected": { },
+  "images":[
+    "https://cdn.hk01.com/di/media/images/dw/20210130/432017263311196160321407.jpeg/mx30rjy6zjULv92r9GM_eHTEBj0s0PPwu-iWbrvolm4?v=w1920"
+  ]
+}
+
+### ChatCompletion 提問 LOG 測試
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "這是一個測試，請隨機介紹一道東南亞美食",
+  "serviceId": "openai-gpt-4o",
+  "ToolSelected": {}
+}
+
+### 測試使用 Ollama Gemma3:4b 提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "這是一個測試，請隨機介紹一道台灣美食",
+  "serviceId": "ollama-gemma3:4b",
+  "ToolSelected": {}
+}
+
+
+### 測試使用 Ollama-gpt-oss 提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "這是一個測試，請隨機介紹一道台灣美食",
+  "serviceId": "ollama-gpt-oss:20b",
+  "ToolSelected": {}
+}
+
+### Ollama MCP 工具提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "請提供已登記工廠【益誠工業社】的基本資料",
+  "serviceId": "ollama-gpt-oss:20b",
+  "ToolSelected": {
+    "DemoSC_FgisMCP":[
+      "factory_query"
+    ]
+  }
+}
+
+### AzureAI 提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "介紹麥可喬丹",
+  "serviceId": "azureai-gpt4",
+  "ToolSelected": {}
+}
+
+### AzureAI 提問，使用工具
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": "52B6BA2C-D570-476A-9734-85E53EC74596",
+  "message": "請提供已登記工廠【益誠工業社】的基本資料",
+  "serviceId": "azureai-gpt4",
+  "ToolSelected": {
+    "DemoSC_FgisMCP":[
+      "factory_query"
+    ]
+  }
+}
+
+### Gemini 提問
+POST {{HostAddress}}/ChatRoom/Ask
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+{
+  "roomId": null,
+  "message": "請隨機介紹一道東南亞美食",
+  "serviceId": "google-gemini-2.5-flash",
+  "ToolSelected": {}
+}
