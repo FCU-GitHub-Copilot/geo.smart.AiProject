@@ -1,0 +1,92 @@
+variables:
+  TARGET_SITE: "ai.geo.local"
+  TARGET_SERVER_PATH: "\\\\devdemosc\\geo.local"
+  WEBSITE_PATH: "./src/Geo.Smart.AiAgentHub.WebSite"
+  DOTNET_FOLDER: "./src/Geo.Smart.AiAgentHub.AiKernel"
+  SOLUTION_PATH: "${DOTNET_FOLDER}/Geo.Smart.AiAgentHub.AiKernel.sln"
+  DOTNET_TEST_PATH: "${DOTNET_FOLDER}/Geo.Smart.AiAgentHub.ServicesTests/Geo.Smart.AiAgentHub.ServicesTests.csproj"
+  WEBAPI_PATH: "${DOTNET_FOLDER}/Geo.Smart.AiAgentHub.WebApi"
+  WEBAPI_CSPROJ: "${WEBAPI_PATH}/Geo.Smart.AiAgentHub.WebApi.csproj"
+
+stages:
+  - restore
+  - sonar
+  - test
+  - build
+
+restore_job:
+  stage: restore
+  tags:
+    - cirunner
+  only:
+    - stag
+  script:
+    - echo ${CI_PROJECT_DIR}
+    - echo $SONAR_PROJ_KEY
+    - echo "開始還原 NuGet 套件..."
+    - dotnet restore ${SOLUTION_PATH}
+
+sonarqube_job:
+  stage: sonar
+  tags:
+    - cirunner
+  only:
+    - stag
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}${WEBAPI_PATH}/.sonar"
+    GIT_DEPTH: "0"
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  allow_failure: true
+  script:
+    - echo "開始執行 SonarQube 掃描..."
+    - cd ${WEBAPI_PATH}
+    - dotnet sonarscanner begin /k:"$SONAR_PROJ_KEY" /d:sonar.host.url="$SONAR_HOST_URL"  /d:sonar.login="$SONAR_TOKEN"
+    - dotnet build /nodereuse:false
+    - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+    - cd ${CI_PROJECT_DIR}
+
+test_job:
+  stage: test
+  tags:
+    - cirunner
+  only:
+    - stag
+  script:
+    - echo "開始執行單元測試 Unit Test..."
+    - dotnet test ${DOTNET_TEST_PATH}
+
+build_job:
+  stage: build
+  tags:
+    - cirunner
+  only:
+    - stag
+  script:
+    - echo "開始建置 ASP.NET 專案..."
+    - echo "前端建置..."
+    - cd ${WEBSITE_PATH}
+    - nvs use
+    - yarn
+    - yarn stag
+    - powershell -Command "robocopy './dist' '${CI_PROJECT_DIR}/Release/${env:TARGET_SITE}/WebSite/' /E /NFL /NDL; if ($LASTEXITCODE -gt 0) { exit 0 } else { exit $LASTEXITCODE }"
+    - cd ${CI_PROJECT_DIR}
+
+    - echo "開始發行 dotnet core 網站..."
+    - dotnet publish ${WEBAPI_CSPROJ} --configuration Release -o ./Release/${env:TARGET_SITE}/WebApi
+    - del ./Release/${env:TARGET_SITE}/WebApi/appsettings.Development.json
+
+    - echo "開始部署專案到測試機..."
+    - cd ${CI_PROJECT_DIR}
+    - echo "開始部署到 DemoSC...."
+    - powershell -Command "New-Item -Path '${env:TARGET_SERVER_PATH}\${env:TARGET_SITE}\WebApi\app_offline.htm' -ItemType File -Force"
+    - echo "已建立 app_offline.htm，開始等待 30 秒...."
+    - ping -n 30 localhost > nul
+    - echo "等待 30 秒結束...."
+    - powershell -Command "robocopy './Release/${env:TARGET_SITE}' '${env:TARGET_SERVER_PATH}\${env:TARGET_SITE}' /E /NFL /NDL; if ($LASTEXITCODE -gt 0) { exit 0 } else { exit $LASTEXITCODE }"
+    - echo 完成 DemoSC 檔案發行複製
+    - powershell -Command "Remove-Item -Path '${env:TARGET_SERVER_PATH}\${env:TARGET_SITE}/WebApi/app_offline.htm' -Force"
+    - echo 已刪除 app_offline.htm
+    - echo 完成部署到 ${TARGET_SITE} 測試站....
