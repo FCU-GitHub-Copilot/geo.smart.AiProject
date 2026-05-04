@@ -1,6 +1,9 @@
 # Cake tools
 /[Tt]ools/
 
+# NuGet
+.nuget/
+
 # Build output
 [Bb]uildArtifacts/
 # Build results
