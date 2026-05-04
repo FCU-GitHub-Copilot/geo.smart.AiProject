@@ -369,4 +369,84 @@ public class LlmMngServiceTests
         Assert.IsFalse(result.Success);
         Assert.AreEqual(ConstantData.Error.NoAuthority, result.Message);
     }
+
+    /// <summary>
+    /// 測試：Delete 使用者為資料擁有者（非管理者）時應回傳成功
+    /// </summary>
+    [TestMethod]
+    public async Task Delete_ShouldSuccess_WhenOwnerNotAdmin()
+    {
+        var db = DbContextFactory.GetInMemoryDbContext();
+        var logger = NullLogger<CommonService>.Instance;
+        var service = new LlmMngService(db, logger);
+
+        var nonAdminUserId = "non-admin-user-id";
+        var nonAdminLlm = new LlmInfo
+        {
+            LlmId = Guid.NewGuid(),
+            ServiceId = "sid-non-admin",
+            ModelId = "gpt-4o",
+            LlmSourceType = LlmSourceType.OpenAi,
+            ApiKey = "key",
+            IsEnabled = true,
+            UserId = nonAdminUserId
+        };
+        db.LlmInfoes.Add(nonAdminLlm);
+        await db.SaveChangesAsync();
+
+        var userInfo = new UserInfo
+        {
+            UserId = nonAdminUserId,
+            RoleId = "some-other-role",
+            OrgId = string.Empty
+        };
+
+        var result = await service.Delete(nonAdminLlm.LlmId, userInfo);
+
+        Assert.IsTrue(result.Success);
+        Assert.AreEqual(nonAdminLlm.LlmId.ToString(), result.Data);
+        var entity = await db.LlmInfoes.FirstOrDefaultAsync(x => x.LlmId == nonAdminLlm.LlmId);
+        Assert.IsNotNull(entity);
+        Assert.IsFalse(entity.IsEnabled);
+    }
+
+    /// <summary>
+    /// 測試：Delete 管理者但非擁有者時應回傳成功
+    /// </summary>
+    [TestMethod]
+    public async Task Delete_ShouldSuccess_WhenAdminNotOwner()
+    {
+        var db = DbContextFactory.GetInMemoryDbContext();
+        var logger = NullLogger<CommonService>.Instance;
+        var service = new LlmMngService(db, logger);
+
+        var anotherUserId = "another-user-id";
+        var anotherLlm = new LlmInfo
+        {
+            LlmId = Guid.NewGuid(),
+            ServiceId = "sid-another",
+            ModelId = "gpt-4o",
+            LlmSourceType = LlmSourceType.OpenAi,
+            ApiKey = "key",
+            IsEnabled = true,
+            UserId = anotherUserId
+        };
+        db.LlmInfoes.Add(anotherLlm);
+        await db.SaveChangesAsync();
+
+        var adminUserInfo = new UserInfo
+        {
+            UserId = DbContextFactory.AdminUserId,
+            RoleId = DbContextFactory.AdminRoleId,
+            OrgId = string.Empty
+        };
+
+        var result = await service.Delete(anotherLlm.LlmId, adminUserInfo);
+
+        Assert.IsTrue(result.Success);
+        Assert.AreEqual(anotherLlm.LlmId.ToString(), result.Data);
+        var entity = await db.LlmInfoes.FirstOrDefaultAsync(x => x.LlmId == anotherLlm.LlmId);
+        Assert.IsNotNull(entity);
+        Assert.IsFalse(entity.IsEnabled);
+    }
 }

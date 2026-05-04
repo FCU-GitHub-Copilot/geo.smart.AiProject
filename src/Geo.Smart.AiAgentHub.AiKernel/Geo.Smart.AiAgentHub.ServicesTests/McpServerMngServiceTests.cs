@@ -1,8 +1,11 @@
 ﻿using Geo.Smart.AiAgentHub.AiKernel.Vm;
+using Geo.Smart.AiAgentHub.DataAccess.Entities;
 using Geo.Smart.AiAgentHub.Entities;
+using Geo.Smart.AiAgentHub.Entities.Vms.AiAgent;
 using Geo.Smart.AiAgentHub.Infras.Enums;
 using Geo.Smart.AiAgentHub.Services;
 using Geo.Smart.CommonCore.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Geo.Smart.AiAgentHub.ServicesTests;
@@ -140,6 +143,194 @@ public class McpServerMngServiceTests
     }
 
     /// <summary>
+    /// 測試 Create 方法遇到名稱包含非法字元時應回傳失敗
+    /// </summary>
+    [TestMethod]
+    public async Task Create_ShouldReturnFailure_WhenNameHasInvalidCharacters()
+    {
+        McpServerMngService service = GetService();
+
+        var vm = new McpServerVm
+        {
+            Name = "Invalid Name!",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://test.com/sse"
+        };
+
+        var userId = DbContextFactory.AdminUserId;
+        var result = await service.Create(vm, userId);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("名稱只能包含英文字母、數字及底線", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Create 方法遇到 MCP Server 名稱重複時應回傳失敗
+    /// </summary>
+    [TestMethod]
+    public async Task Create_ShouldReturnFailure_WhenNameExists()
+    {
+        McpServerMngService service = GetService();
+
+        var vm = new McpServerVm
+        {
+            Name = "Sse_Server",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://test.com/sse"
+        };
+
+        var userId = DbContextFactory.AdminUserId;
+        var result = await service.Create(vm, userId);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("已存在", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Create 方法遇到 Stdio 類型時應回傳失敗（目前不支援）
+    /// </summary>
+    [TestMethod]
+    public async Task Create_ShouldReturnFailure_WhenMcpServerTypeIsStdio()
+    {
+        McpServerMngService service = GetService();
+
+        var vm = new McpServerVm
+        {
+            Name = "New_Stdio_Server",
+            McpServerType = McpServerType.Stdio,
+            StdioCommand = "cmd"
+        };
+
+        var userId = DbContextFactory.AdminUserId;
+        var result = await service.Create(vm, userId);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("不支援 stdio", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Update 方法遇到名稱為空時應回傳失敗
+    /// </summary>
+    [TestMethod]
+    public async Task Update_ShouldReturnFailure_WhenNameIsEmpty()
+    {
+        McpServerMngService service = GetService();
+        var mcpServerId = Guid.Parse("20000000-BBBB-BBBB-BBBB-BBBBBBBBBBBB");
+
+        var vm = new McpServerUpdateVm
+        {
+            McpServerId = mcpServerId,
+            Name = "",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://test.com/sse"
+        };
+
+        var result = await service.Update(vm);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("必填", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Update 方法遇到名稱包含非法字元時應回傳失敗
+    /// </summary>
+    [TestMethod]
+    public async Task Update_ShouldReturnFailure_WhenNameHasInvalidCharacters()
+    {
+        McpServerMngService service = GetService();
+        var mcpServerId = Guid.Parse("20000000-BBBB-BBBB-BBBB-BBBBBBBBBBBB");
+
+        var vm = new McpServerUpdateVm
+        {
+            McpServerId = mcpServerId,
+            Name = "Invalid Name!",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://test.com/sse"
+        };
+
+        var result = await service.Update(vm);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("名稱只能包含英文字母、數字及底線", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Update 方法遇到 Stdio 類型時應回傳失敗（目前不支援）
+    /// </summary>
+    [TestMethod]
+    public async Task Update_ShouldReturnFailure_WhenMcpServerTypeIsStdio()
+    {
+        McpServerMngService service = GetService();
+        var mcpServerId = Guid.Parse("20000000-BBBB-BBBB-BBBB-BBBBBBBBBBBB");
+
+        var vm = new McpServerUpdateVm
+        {
+            McpServerId = mcpServerId,
+            Name = "Updated_Server",
+            McpServerType = McpServerType.Stdio
+        };
+
+        var result = await service.Update(vm);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("不支援 stdio", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Update 方法遇到名稱重複時應回傳失敗
+    /// </summary>
+    [TestMethod]
+    public async Task Update_ShouldReturnFailure_WhenNameExists()
+    {
+        McpServerMngService service = GetService();
+
+        var sseMcpServerId = Guid.Parse("20000000-BBBB-BBBB-BBBB-BBBBBBBBBBBB");
+
+        var vm = new McpServerUpdateVm
+        {
+            McpServerId = sseMcpServerId,
+            Name = "Stdio_Server",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://test.com/sse"
+        };
+
+        var result = await service.Update(vm);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("已經被使用", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Update 方法遇到不存在的 MCP Server 時應回傳失敗
+    /// </summary>
+    [TestMethod]
+    public async Task Update_ShouldReturnFailure_WhenNotFound()
+    {
+        McpServerMngService service = GetService();
+
+        var vm = new McpServerUpdateVm
+        {
+            McpServerId = Guid.NewGuid(),
+            Name = "NonExistent_Server",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://test.com/sse"
+        };
+
+        var result = await service.Update(vm);
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+        Assert.Contains("查無資料", result.Message);
+    }
+
+    /// <summary>
     /// 測試 Delete 方法能成功刪除 MCP Server
     /// </summary>
     [TestMethod]
@@ -208,5 +399,85 @@ public class McpServerMngServiceTests
         Assert.IsNotNull(result);
         Assert.IsFalse(result.Success);
         Assert.Contains("無權限", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Delete 方法在使用者為資料擁有者（非管理者）時應回傳成功
+    /// </summary>
+    [TestMethod]
+    public async Task Delete_ShouldSuccess_WhenOwnerNotAdmin()
+    {
+        var logger = NullLogger<CommonService>.Instance;
+        var db = DbContextFactory.GetInMemoryDbContext();
+        var service = new McpServerMngService(db, logger);
+
+        var nonAdminUserId = "non-admin-user-id";
+        var nonAdminServer = new McpServer
+        {
+            McpServerId = Guid.NewGuid(),
+            Name = "NonAdmin_Server",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://non-admin.test.com/sse",
+            UserId = nonAdminUserId,
+            Tools = "[]",
+            IsEnabled = true
+        };
+        db.McpServers.Add(nonAdminServer);
+        await db.SaveChangesAsync();
+
+        var userInfo = new UserInfo
+        {
+            UserId = nonAdminUserId,
+            RoleId = "some-other-role",
+            Account = "NonAdminUser"
+        };
+
+        var result = await service.Delete(nonAdminServer.McpServerId, userInfo);
+
+        Assert.IsNotNull(result);
+        Assert.IsTrue(result.Success);
+        var deleted = await db.McpServers.FirstOrDefaultAsync(x => x.McpServerId == nonAdminServer.McpServerId);
+        Assert.IsNotNull(deleted);
+        Assert.IsFalse(deleted.IsEnabled);
+    }
+
+    /// <summary>
+    /// 測試 Delete 方法在使用者為管理者但非擁有者時應回傳成功
+    /// </summary>
+    [TestMethod]
+    public async Task Delete_ShouldSuccess_WhenAdminNotOwner()
+    {
+        var logger = NullLogger<CommonService>.Instance;
+        var db = DbContextFactory.GetInMemoryDbContext();
+        var service = new McpServerMngService(db, logger);
+
+        var anotherUserId = "another-user-id";
+        var anotherServer = new McpServer
+        {
+            McpServerId = Guid.NewGuid(),
+            Name = "Another_Server",
+            McpServerType = McpServerType.Sse,
+            SseUrl = "https://another.test.com/sse",
+            UserId = anotherUserId,
+            Tools = "[]",
+            IsEnabled = true
+        };
+        db.McpServers.Add(anotherServer);
+        await db.SaveChangesAsync();
+
+        var adminUserInfo = new UserInfo
+        {
+            UserId = DbContextFactory.AdminUserId,
+            RoleId = DbContextFactory.AdminRoleId,
+            Account = "GeoAdmin"
+        };
+
+        var result = await service.Delete(anotherServer.McpServerId, adminUserInfo);
+
+        Assert.IsNotNull(result);
+        Assert.IsTrue(result.Success);
+        var deleted = await db.McpServers.FirstOrDefaultAsync(x => x.McpServerId == anotherServer.McpServerId);
+        Assert.IsNotNull(deleted);
+        Assert.IsFalse(deleted.IsEnabled);
     }
 }

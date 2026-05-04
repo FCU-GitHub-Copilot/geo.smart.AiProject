@@ -1,4 +1,5 @@
 ﻿using Geo.Smart.AiAgentHub.DataAccess;
+using Geo.Smart.AiAgentHub.DataAccess.Entities;
 using Geo.Smart.AiAgentHub.Entities;
 using Geo.Smart.AiAgentHub.Entities.Vms.AiAgent;
 using Geo.Smart.AiAgentHub.Services;
@@ -342,5 +343,76 @@ public class ProjectMngServiceTests
         Assert.IsNotNull(result);
         Assert.IsFalse(result.Success);
         Assert.Contains("無權限", result.Message);
+    }
+
+    /// <summary>
+    /// 測試 Delete 方法在使用者為資料擁有者（非管理者）時應回傳成功
+    /// </summary>
+    [TestMethod]
+    public async Task Delete_ShouldSuccess_WhenOwnerNotAdmin()
+    {
+        var db = DbContextFactory.GetInMemoryDbContext();
+        var service = CreateService(db);
+
+        var nonAdminUserId = "non-admin-user-id";
+        var nonAdminProject = new AiProject
+        {
+            ProjectId = Guid.NewGuid(),
+            Name = "非管理者專案",
+            SystemPrompt = "你是 AI 助手",
+            UserId = nonAdminUserId,
+            IsEnabled = true
+        };
+        db.AiProjects.Add(nonAdminProject);
+        await db.SaveChangesAsync();
+
+        var userInfo = new UserInfo
+        {
+            UserId = nonAdminUserId,
+            Account = "NonAdminUser"
+        };
+
+        var result = await service.Delete(nonAdminProject.ProjectId, userInfo);
+
+        Assert.IsNotNull(result);
+        Assert.IsTrue(result.Success);
+        var deleted = db.AiProjects.First(x => x.ProjectId == nonAdminProject.ProjectId);
+        Assert.IsFalse(deleted.IsEnabled);
+    }
+
+    /// <summary>
+    /// 測試 Delete 方法在使用者為管理者但非擁有者時應回傳成功
+    /// </summary>
+    [TestMethod]
+    public async Task Delete_ShouldSuccess_WhenAdminNotOwner()
+    {
+        var db = DbContextFactory.GetInMemoryDbContext();
+        var service = CreateService(db);
+
+        var anotherUserId = "another-user-id";
+        var anotherProject = new AiProject
+        {
+            ProjectId = Guid.NewGuid(),
+            Name = "他人的專案",
+            SystemPrompt = "你是 AI 助手",
+            UserId = anotherUserId,
+            IsEnabled = true
+        };
+        db.AiProjects.Add(anotherProject);
+        await db.SaveChangesAsync();
+
+        var adminUserInfo = new UserInfo
+        {
+            UserId = DbContextFactory.AdminUserId,
+            RoleId = DbContextFactory.AdminRoleId,
+            Account = "GeoAdmin"
+        };
+
+        var result = await service.Delete(anotherProject.ProjectId, adminUserInfo);
+
+        Assert.IsNotNull(result);
+        Assert.IsTrue(result.Success);
+        var deleted = db.AiProjects.First(x => x.ProjectId == anotherProject.ProjectId);
+        Assert.IsFalse(deleted.IsEnabled);
     }
 }
