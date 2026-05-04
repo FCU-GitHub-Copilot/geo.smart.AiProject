@@ -278,7 +278,7 @@ public class ProjectMngService(GdbContext dbModel,
                 return ResultHelper.Failure<string>("查無資料");
             }
             if (!DefaultCfgs.IsAdmin(userInfo)
-                || userInfo.UserId != entity.UserId)
+                && userInfo.UserId != entity.UserId)
             {
                 return ResultHelper.Failure<string>("無權限");
             }

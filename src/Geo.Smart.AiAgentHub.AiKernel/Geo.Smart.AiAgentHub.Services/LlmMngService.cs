@@ -216,7 +216,7 @@ public class LlmMngService(GdbContext dbModel,
                 return ResultHelper.Failure<string>(ConstantData.Error.NoData);
             }
             if (!DefaultCfgs.IsAdmin(userInfo)
-                || userInfo.UserId != entity.UserId)
+                && userInfo.UserId != entity.UserId)
             {
                 return ResultHelper.Failure<string>(ConstantData.Error.NoAuthority);
             }
